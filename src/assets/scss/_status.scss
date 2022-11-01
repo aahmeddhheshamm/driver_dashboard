@@ -1,0 +1,377 @@
+@import "../css/variable";
+
+// Variables
+$RGB: rgb(197, 5, 197);
+$blue: blue;
+$success:  #28a745;
+$black: black;
+$warning: #ffd369;
+$danger: #f14336;
+$dark_sky_blue: #2f9be8;
+$caribbean_water: #2fdac2;
+$sunny_gold: #ff9f00;
+$light_cherry: #da302b;
+$ladies_only: #ff7daa;
+$light_grey: #a0a5bc;
+$status: ( // Primary status
+        "primary":$blue,
+        "new": $blue,
+        "New": $blue,
+        "blue": $blue,
+        "future_candidates":$blue,
+
+        "backlog":$blue,
+        "authorized_absent":$blue,
+        "attendance": $blue,
+        "Attendance": $blue,
+        "creativity":$blue,
+
+
+  // Colored status
+        "RGB": $RGB,
+        "on_assessment": $RGB,
+        "graded": $RGB,
+        "all": $RGB,
+        "disciplined": $RGB,
+        "documents-resources": $RGB,
+
+
+
+
+
+  // Dark || Gray
+        "dark": $black,
+        "black":$black,
+        'no_show':$black,
+        "shortlisted": $black,
+        "to_do": $black,
+        "archived": gray,
+        "Archived": gray,
+        "archive": gray,
+        "Archive": gray,
+        "ended": gray,
+        "pending acceptance": gray,
+        "Ended": gray,
+        'school_closed_to_pupil':$black,
+        'had_to_leave_the_school':$black,
+
+
+
+  // success status
+        "success": $success,
+        "Success": $success,
+        "qualified": $success,
+        "Qualified": $success,
+        "active": $success,
+        "Active": $success,
+        "activated": $success,
+        "enrolled":$success,
+        "Enrolled":$success,
+        "live":$success,
+        "Live":$success,
+        "done":$success,
+        "Done":$success,
+        "present": $success,
+        "Present": $success,
+        "fees-payment": $success,
+        'upcoming':$success,
+        'Upcoming':$success,
+        'improvement_in_attendance':$success,
+        'action':$success,
+        'Validated':$success,
+        'validated':$success,
+        'submitted':$success,
+        'submit':$success,
+        'submit_student':$success,
+        'accepted':$success,
+        'Published': $success,
+        'published': $success,
+
+
+
+  // warning status
+        "warning": $warning,
+        "waiting_list": $warning,
+        "suspended": $warning,
+        "Suspended": $warning,
+        "suspend": $warning,
+        "Suspend": $warning,
+        "unfinished": $warning,
+        "Unfinished": $warning,
+        "withdrawn":$warning,
+        "Withdrawn":$warning,
+        "Doing":$warning,
+        "doing":$warning,
+        'Ongoing':$warning,
+        'ongoing':$warning,
+        "on_leave":$warning,
+        "family-profile":$warning,
+        "Running":$warning,
+        "running":$warning,
+        'not_recorded':$warning,
+        'not_validated_yet':$warning,
+        'not_submited_student_yet ':$warning,
+        'not_submitted_student_yet ':$warning,
+        'not_submited_yet ':$warning,
+        'not_submitted_yet ':$warning,
+        'today':$warning,
+        'pending':$warning,
+        'Pending':$warning,
+
+
+  // Danger status
+        "danger": $danger,
+        "disqualified": $danger,
+        "closed": $danger,
+        "Closed": $danger,
+        "Close": $danger,
+        "inactive": $danger,
+        "deactivated": $danger,
+        "deactive": $danger,
+        "blocked": $danger,
+        "declined": $danger,
+        "not_live": $danger,
+        "not_done_yet":$danger,
+        "canceled":$danger,
+        "Canceled":$danger,
+        "Cancel":$danger,
+        "cancel":$danger,
+        "absent": $danger,
+        "overdue":$danger,
+        "draft":$danger,
+        "Draft":$danger,
+        "Rejected":$danger,
+        "rejected":$danger,
+        "reject":$danger,
+        "Reject":$danger,
+        "usual_absent":$danger,
+        "recently_usual_absent":$danger,
+        'used_to_miss_the_first_bell':$danger,
+        'service':$danger,
+        'delayed':$danger,
+        'Delayed':$danger,
+        'not_approved':$danger,
+        "not_valiated":$danger,
+        "not_validated":$danger,
+        'not_accepted':$danger,
+        'not_accept':$danger,
+        "banned":$danger,
+
+);
+
+$levels: (
+      "blue":$dark_sky_blue,
+      "cyan":$caribbean_water,
+      "orange":$sunny_gold,
+      "red":$light_cherry,
+      "pink":$ladies_only,
+      "grey":$light_grey
+);
+
+.bg-RGB {
+  background-color: $RGB !important;
+}
+
+[class*="status--"] {
+  text-transform: capitalize;
+
+  padding: 4px 12px;
+  font-weight: 500;
+  // box-shadow: 0 1px 1.5px 0px #12090917,
+  //   0 1px 1px 0px #0000000a;
+  background: rgba(var(--vs-primary), 0.15) !important;
+  color: rgba(var(--vs-primary), 1) !important;
+
+  .vs-chip--text {
+    margin: 0px !important;
+  }
+
+  &:not(.con-vs-chip) {
+    padding: 2px 8px;
+    border-radius: 50px;
+    // width: auto;
+  }
+
+  * {
+    text-align: center !important;
+    margin: 0;
+  }
+
+  .vs-switch--text {
+    color: inherit;
+    font-size: 11.2px;
+    font-family: "Montserrat",
+    Helvetica,
+    Arial,
+    sans-serif;
+  }
+
+}
+
+[class*="status2--"] {
+  text-transform: capitalize;
+  padding: 4px 12px;
+  font-weight: 500;
+  text-align: center !important;
+  border-radius: 5px;
+  color: rgba(var(--vs-primary), 1) !important;
+  background: rgba(var(--vs-primary), 0.15);
+
+  &:after,
+  &:before {
+    color: rgba(var(--vs-primary), 1) !important;
+  }
+}
+
+[class*="status3--"] {
+  text-transform: capitalize;
+  padding: 4px 12px;
+  font-weight: 500;
+  text-align: center !important;
+  border-radius: 5px;
+  color: rgba(var(--vs-primary), 1) !important;
+  background: rgba(var(--vs-primary), .4);
+}
+
+[class*="status-text--"] {
+  text-transform: capitalize;
+  padding: 4px 12px;
+  font-weight: 500;
+  text-align: center !important;
+  border-radius: 5px;
+
+  &,
+  &:after,
+  &:before {
+    color: rgba(var(--vs-primary), 1) !important;
+  }
+}
+
+[class*="status-fill--"] {
+  text-transform: capitalize;
+  padding: 4px 12px;
+  font-weight: 500;
+  text-align: center !important;
+  border-radius: 5px;
+  border: 1px solid rgba(var(--vs-primary), .4);
+  color: rgba(var(--vs-primary), 1) !important;
+
+  &:after,
+  &:before {
+    color: rgba(var(--vs-primary), 1) !important;
+  }
+}
+
+[class*="status-text-border--"] {
+  text-transform: capitalize;
+  padding: 4px 12px;
+  font-weight: 500;
+  text-align: center !important;
+  border-radius: 5px;
+  background: rgba(var(--vs-primary), .8);
+  color: #fff !important;
+
+  &:after,
+  &:before {
+    color: #fff !important;
+  }
+}
+
+@each $name,
+$color in $status {
+  .status--#{$name} {
+    background: rgba($color, 0.15) !important;
+    color: rgba($color, 1) !important;
+
+    .vs-switch--text {
+      color: rgba($color, 1) !important;
+      font-size: 11.2px;
+    }
+
+    &:after,
+    &:before {
+      color: rgba($color, 1) !important;
+    }
+
+  }
+
+  // background with opacity .15
+  .status2--#{$name} {
+    color: rgba($color, 1) !important;
+    background: rgba($color, 0.15);
+
+    &:after,
+    &:before {
+      color: rgba($color, 1) !important;
+    }
+  }
+
+  // background with opacity .5
+  .status3--#{$name} {
+    color: darken($color, 25) !important;
+    background: rgba($color, .4);
+
+    &:after,
+    &:before {
+      color: darken(rgba($color, 1), 25) !important;
+    }
+  }
+
+  // text
+  .status-text--#{$name} {
+
+    &,
+    &:after,
+    &:before {
+      color: rgba($color, 1) !important;
+    }
+  }
+
+  // border
+  .status-text-border--#{$name} {
+    border: 1px solid rgba($color, .4);
+    color: rgba($color, 1) !important;
+
+    &:after,
+    &:before {
+      color: rgba($color, 1) !important;
+    }
+  }
+
+  // background
+  .status-fill--#{$name} {
+    background: rgba($color, .8);
+    color: #fff !important;
+
+    &:after,
+    &:before {
+      color: #fff !important;
+    }
+  }
+}
+// Levels style
+@each $name, $color in $levels {
+  .radio-btn-#{$name} {
+    color: $color !important;
+    border: 2px solid $color !important;
+  }
+  .radio-btn-#{$name}:hover {
+    color: white !important;
+    background: $color !important;
+  }
+  .radio-btn-selected-#{$name} {
+    color: white !important;
+    background: $color !important;
+  }
+  .slot-box-#{$name} {
+    border:1px solid #efefef;
+    height: 150px;
+    font-weight: bold;
+    font-size: 12px;
+    color: $color;
+    background-color: rgba($color, 0.1);
+  }
+  .circle-#{$name} {
+    color: $color !important;
+  }
+}

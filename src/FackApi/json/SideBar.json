@@ -1,0 +1,70 @@
+[
+  {
+    "title": "dashboard",
+    "name": "main.sidebar.dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "index"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-home",
+    "userType": "both",
+    "storeStatues": "completed"
+  },
+  {
+    "title": "الرحلات",
+    "name": "trips.trips",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "trips"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-donate",
+    "userType": "both",
+    "storeStatues": "completed"
+  },
+  {
+    "title": "trips.withdrawProcess",
+    "name": "trips.withdrawProcess",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "withdrawProcess"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-donate",
+    "userType": "both",
+    "storeStatues": "completed"
+  },
+  {
+    "title": "settings",
+    "name": "main.sidebar.settings",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "setting"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-tools",
+    "storeStatues": "pending"
+  },
+  {
+    "title": "processing",
+    "name": "main.sidebar.processing",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "processing"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-exchange-alt",
+    "storeStatues": "processing"
+  }
+]

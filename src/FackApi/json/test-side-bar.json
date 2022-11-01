@@ -1,0 +1,230 @@
+[
+  {
+    "title": "Leads",
+    "name": "Leads",
+    "is_heading": false,
+    "is_active": false,
+    "link": "",
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-tools",
+    "userType": "admin"
+  },
+  {
+    "title": "Activation",
+    "name": "Activation",
+    "permission": "dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "activation"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-check-circle",
+    "userType": "admin"
+  },
+  {
+    "title": "Profiles",
+    "name": "Profiles",
+    "permission": "dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "profiles"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-id-card",
+    "userType": "admin"
+  },
+  {
+    "title": "Landmarks",
+    "name": "Landmarks",
+    "permission": "dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "landmarks"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-landmark",
+    "userType": "admin"
+  },
+  {
+    "title": "Services",
+    "name": "Services",
+    "permission": "dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "services"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-hand-holding-heart",
+    "userType": "admin"
+  },
+  {
+    "title": "Promotions",
+    "name": "Promotions",
+    "permission": "dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "promostionslist"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-percentage",
+    "userType": "admin"
+  },
+  {
+    "title": "Customers",
+    "name": "Customers",
+    "permission": "dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "customers"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-users",
+    "userType": "admin"
+  },
+  {
+    "title": "Settings",
+    "name": "Settings",
+    "permission": "dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "settings"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-cog",
+    "userType": "admin"
+  },
+  {
+    "title": "Notifications",
+    "name": "Notifications",
+    "permission": "dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "notifications"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-bell",
+    "userType": "admin",
+    "children": [
+      {
+        "title": "store",
+        "name": "store",
+        "is_active": false,
+        "link": {
+          "name": "store"
+        },
+        "class_name": "",
+        "is_icon_class": true,
+        "icon": "las la-store"
+      },
+      {
+        "title": "withdraw",
+        "name": "withdraw",
+        "is_active": false,
+        "link": {
+          "name": "withdraw"
+        },
+        "class_name": "",
+        "is_icon_class": true,
+        "icon": "lab la-cc-visa"
+      },
+      {
+        "title": "settings",
+        "name": "settings",
+        "is_active": false,
+        "link": {
+          "name": "settings"
+        },
+        "class_name": "",
+        "is_icon_class": true,
+        "icon": "las la-cog"
+      }
+    ]
+  },
+  {
+    "title": "Analytics",
+    "name": "Analytics",
+    "permission": "dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "analytics"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-chart-bar",
+    "userType": "admin"
+  },
+  {
+    "title": "Admin",
+    "name": "Admin",
+    "permission": "dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "admin"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-user-lock",
+    "userType": "admin"
+  },
+  {
+    "title": "Tickets",
+    "name": "Tickets",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "tickets"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-ticket-alt",
+    "userType": "provider",
+    "serviceTypes": "Go"
+  },
+  {
+    "title": "Activity",
+    "name": "Activity",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "activities"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-brush",
+    "userType": "provider",
+    "serviceTypes": "Pro"
+  },
+  {
+    "title": "Courses",
+    "name": "Courses",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "courses"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-file-alt",
+    "userType": "provider",
+    "serviceTypes": "Pro"
+  }
+]
