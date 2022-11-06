@@ -53,18 +53,5 @@
     "is_icon_class": true,
     "icon": "las la-tools",
     "storeStatues": "pending"
-  },
-  {
-    "title": "processing",
-    "name": "main.sidebar.processing",
-    "is_heading": false,
-    "is_active": false,
-    "link": {
-      "name": "processing"
-    },
-    "class_name": "",
-    "is_icon_class": true,
-    "icon": "las la-exchange-alt",
-    "storeStatues": "processing"
   }
 ]

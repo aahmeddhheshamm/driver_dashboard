@@ -1,5 +1,89 @@
 <template>
   <div>
+    <b-modal id="request-trip" size="lg" centered hide-header hide-footer v-model="openPopupRequest">
+      <b-row v-for="(i ,key) in trips" :key="key">
+        <b-col lg="2">
+          <div class="driver-logo" :style="{
+            'background-image': 'url('+ i+')',
+            'background-size' : 'cover'
+
+          }"></div>
+          <div class="d-flex flex-column">
+            <p class="m-0 p-0">آسم العميل</p>
+            <h5>{{i.userName}}</h5>
+          </div>
+        </b-col>
+        <b-col lg="4">
+          <div class="d-flex flex-column">
+            <div class="d-flex flex-column">
+              <p class="p-0 m-0 font-weight-bold">من</p>
+              <p>{{i.startAddress}}</p>
+            </div>
+            <div class="d-flex flex-column">
+              <p class="p-0 m-0 font-weight-bold">الى</p>
+              <p>{{i.endAddress}}</p>
+            </div>
+          </div>
+        </b-col>
+        <b-col lg="3">
+          <div class="d-flex flex-column">
+            <div class="d-flex flex-column">
+              <p class="p-0 m-0 font-weight-bold">المسافة</p>
+              <p>20 كيلومتر</p>
+            </div>
+            <div class="d-flex flex-column">
+              <p class="p-0 m-0 font-weight-bold">موعد النقل</p>
+              <p>{{i.created_at}}</p>
+            </div>
+          </div>
+        </b-col>
+        <b-col lg="3">
+          <div class="d-flex flex-column align-items-center">
+            <div class="d-flex flex-column">
+              <p class="p-0 m-0 font-weight-bold">العرض</p>
+              <p> {{i.price}} ر.س</p>
+            </div>
+            <div v-if="status !=='accepted' && status !=='rejected'">
+              <div v-if="!loadingButtons">
+                <div class="d-flex align-items-center mb-2 justify-content-between">
+                  <b-button variant="primary" class="px-3 py-2 ml-1" @click="accept(i)">قبول</b-button>
+                  <b-button variant="danger" class="px-3 py-2 mr-1" @click="reject(key)">رفض</b-button>
+                </div>
+                <b-button v-if="!showPriceInput" variant="outline-primary" class="m-auto px-4 py-2 mt-3 w-100 d-block">
+                  <span class="font-size-14" @click="showPriceInput = true">عرض سعر آخر</span>
+                </b-button>
+                <div class="mt-2" v-else>
+                    <b-form>
+                      <div class="position-relative">
+                        <input-form v-model="price" placeholder="سعر آخر"></input-form>
+                        <span class="text-primary font-weight-bold position-absolute sent_button" @click="accept(i)">إرسال</span>
+                      </div>
+                    </b-form>
+                </div>
+              </div>
+              <div v-else>
+                <b-button variant="primary" class="px-3 py-2 ml-1 w-100">
+                  <spinner-loading text="انتظار" />
+                </b-button>
+              </div>
+            </div>
+            <div v-else class="w-100">
+              <div v-if="status === 'accepted'" class="done-box d-flex flex-column align-items-center justify-content-center">
+                <i class="las la-check-circle text-white font-size-20"></i>
+                <span class="text-white font-size-14 ">تم الموافقة</span>
+              </div>
+              <div v-if="status === 'rejected'" >
+                <div class="refuse-box d-flex flex-column align-items-center justify-content-center">
+                  <i class="las la-times-circle text-white font-size-20"></i>
+                  <span class="text-white font-size-14 ">تم الرفض</span>
+                </div>
+                <p class="text-warning p-0 m-0 mt-2 text-decoration-underline text-center" @click="showPriceInput = true ; status = ''">عرض سعر أخر</p>
+              </div>
+            </div>
+          </div>
+        </b-col>
+      </b-row>
+    </b-modal>
     <delete-popup ref="deletePopup" />
     <router-view/>
   </div>
@@ -8,22 +92,29 @@
 import { core } from './config/pluginInit'
 import { mapGetters } from 'vuex'
 import Bus from '@/eventBus'
+import authServices from '@/modules/auth/services/auth'
+import tripSErvices from '@/modules/trips/services/trip'
 export default {
   name: 'App',
   components: {
   },
   data () {
     return {
-      channel: [],
-      pusher: null,
-      not: '',
+      status: '',
+      showPriceInput: false,
+      loadingButtons: false,
+      trips: [],
+      price: '',
       onLine: navigator.onLine,
       showBackOnline: false,
-      deletePopup: false
+      deletePopup: false,
+      listenersStarted: false,
+      openPopupRequest: false
     }
   },
   mounted () {
-    console.log('sddsadasdsa => ', process)
+    // console.log('sddsadasdsa => ', process)
+    this.startListeners()
     core.mainIndex()
     window.addEventListener('online', this.updateOnlineStatus)
     window.addEventListener('offline', this.updateOnlineStatus)
@@ -56,20 +147,99 @@ export default {
     }
   },
   methods: {
-    /*     getMerchantInfo () {
-      settingService.getMerchantInfo().then(res => {
-        console.log('resssssssss => ', res)
-      })
-    }, */
     updateOnlineStatus (e) {
       const { type } = e
       this.onLine = type === 'online'
+    },
+    async startListeners () {
+      await this.startOnMessageListener()
+      await this.startTokenRefreshListener()
+      await this.requestPermission()
+      await this.getIdToken()
+      this.listenersStarted = true
+    },
+    startOnMessageListener () {
+      try {
+        this.$messaging.onMessage((payload) => {
+          if (JSON.parse(payload.notification.body).type) {
+            this.loadingButtons = false
+            if (JSON.parse(payload.notification.body).accepted) {
+              this.status = 'accepted'
+            } else {
+              this.status = 'rejected'
+            }
+          } else {
+            if (!this.openPopupRequest) {
+              this.openPopupRequest = true
+            }
+            this.trips.unshift(JSON.parse(payload.notification.body))
+            this.price = JSON.parse(payload.notification.body).price
+          }
+        })
+      } catch (e) {
+        console.error('Error : ', e)
+      }
+    },
+    startTokenRefreshListener () {
+      try {
+        this.$messaging.onTokenRefresh(async () => {
+          try {
+            const token = this.$messaging.getToken()
+            const res = await authServices.sendFirebase(token)
+            localStorage.setItem('fcmToken', res)
+          } catch (e) {
+            console.error('Error : ', e)
+          }
+        })
+      } catch (e) {
+        console.error('Error : ', e)
+      }
+    },
+    async requestPermission () {
+      try {
+        const permission = await Notification.requestPermission()
+        console.log(permission)
+      } catch (e) {
+        console.error('Error : ', e)
+      }
+    },
+    async getIdToken () {
+      try {
+        this.idToken = await this.$messaging.getToken()
+        console.log(this.idToken)
+        localStorage.setItem('fcmToken', this.idToken)
+        const res = await authServices.sendFirebase(this.idToken)
+        console.log('res => ', res)
+      } catch (e) {
+        console.error('Error : ', e)
+      }
+    },
+    accept (item) {
+      const obj = {
+        driverId: 3,
+        tripRequestId: item.id,
+        price: this.price
+      }
+      tripSErvices.acceptTrip(obj).then(res => {
+        this.loadingButtons = true
+        core.showSnackbar('success', res.data.message)
+      })
+    },
+    reject (key) {
+      this.trips.splice(key, 1)
+      if (this.trips.length === 0) {
+        this.openPopupRequest = false
+      }
     }
   }
 }
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss">
+.sent_button {
+  left: 0;
+  top: 10px
+}
 .profile-div{
   width: 80px;
   height: 80px;
@@ -243,5 +413,9 @@ ul.nav.nav-tabs::-webkit-scrollbar {
 }
 .daterangepicker .calendars-container {
   flex-grow: 1 !important;
+}
+.text-decoration-underline {
+  text-decoration: underline !important;
+  cursor: pointer;
 }
 </style>

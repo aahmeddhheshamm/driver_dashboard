@@ -5,7 +5,9 @@ import store from './store'
 import i18n from './i18n'
 import './helper'
 import './components'
+import firebaseMessaging from '@/config/firebase'
 
+Vue.prototype.$messaging = firebaseMessaging
 Vue.config.productionTip = false
 
 const vm = new Vue({

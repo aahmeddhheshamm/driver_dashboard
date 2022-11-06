@@ -1,13 +1,13 @@
-import { marketPlace } from '@/axios'
+import { transportation } from '@/axios'
 
 export default {
   uploadMarketplaceFiles (payload) {
-    return marketPlace().patch('merchant/stores', payload)
+    return transportation().patch('merchant/stores', payload)
   },
   getMerchantInfo () {
-    return marketPlace().get('merchant/info')
+    return transportation().get('merchant/info')
   },
   changeDefaultStore (payload) {
-    return marketPlace().patch('merchant/change-default-store', payload)
+    return transportation().patch('merchant/change-default-store', payload)
   }
 }

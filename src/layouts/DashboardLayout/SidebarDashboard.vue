@@ -1,10 +1,10 @@
 <template>
   <aside :class="sidebar ? 'open-sidebar' : ''">
     <!-- logo2  -->
-    <!-- <button class="sidebar-logo-btn border-0 d-flex align-items-center">
+     <button class="sidebar-logo-btn border-0 d-flex align-items-center">
       <img src="@/assets/images/logo2.png" alt="" />
-      <span class="sidebar-logo-text">QUBHAN GROUP</span>
-    </button> -->
+      <span class="sidebar-logo-text">Driver</span>
+    </button>
     <ul class="sidebar-items mb-0">
       <li v-for="(item, i) in SideBarItems" :key="i">
 <!--        v-if="getStoreStatus === item.storeStatues"-->

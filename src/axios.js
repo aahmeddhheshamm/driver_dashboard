@@ -27,9 +27,9 @@ export function singleSignOn () {
   })
   return apiClient
 }
-export function marketPlace () {
+export function transportation () {
   const apiClient = axios.create({
-    baseURL: process.env.VUE_APP_MARKETPLACE_LINK,
+    baseURL: process.env.VUE_APP_TRANSPORTATION_LINK,
     headers: {
       Authorization: `Bearer ${JSON.parse(localStorage.getItem('userToken')) ? JSON.parse(localStorage.getItem('userToken')) : null}`,
       Accept: 'application/json',
