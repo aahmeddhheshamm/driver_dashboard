@@ -161,12 +161,22 @@ export default {
     startOnMessageListener () {
       try {
         this.$messaging.onMessage((payload) => {
-          if (JSON.parse(payload.notification.body).type) {
+          console.log('JSON.parse(payload.notification.body).type => ', payload)
+          if (JSON.parse(payload.notification.body).type === 'status') {
             this.loadingButtons = false
             if (JSON.parse(payload.notification.body).accepted) {
               this.status = 'accepted'
             } else {
               this.status = 'rejected'
+            }
+          } else if (JSON.parse(payload.notification.body).type === 'cancelled') {
+            const indexOfTrip = this.trips.findIndex(trip => trip.id === JSON.parse(payload.notification.body).tripRequestId)
+            console.log('indexOfTrip => ', indexOfTrip)
+            if (indexOfTrip > -1) {
+              this.trips.splice(indexOfTrip, 1)
+            }
+            if (this.trips.length === 0) {
+              this.openPopupRequest = false
             }
           } else {
             if (!this.openPopupRequest) {
@@ -216,7 +226,7 @@ export default {
     },
     accept (item) {
       const obj = {
-        driverId: 3,
+        driverId: 1,
         tripRequestId: item.id,
         price: this.price
       }

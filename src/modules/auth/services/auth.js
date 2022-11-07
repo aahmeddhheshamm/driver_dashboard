@@ -9,6 +9,6 @@ export default {
   },
   sendFirebase (payload) {
     console.log(transportation)
-    return transportation().patch('drivers/3/fcm-token', { fcm_token: payload }) // ::TODO change static user id
+    return transportation().patch('drivers/1/fcm-token', { fcm_token: payload }) // ::TODO change static user id
   }
 }
