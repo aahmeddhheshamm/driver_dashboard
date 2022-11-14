@@ -109,11 +109,11 @@ export default {
       showBackOnline: false,
       deletePopup: false,
       listenersStarted: false,
-      openPopupRequest: false
+      openPopupRequest: false,
+      driverId: JSON.parse(localStorage.getItem('userInfo')).data.user.id
     }
   },
   mounted () {
-    // console.log('sddsadasdsa => ', process)
     this.startListeners()
     core.mainIndex()
     window.addEventListener('online', this.updateOnlineStatus)
@@ -225,8 +225,9 @@ export default {
       }
     },
     accept (item) {
+      console.log(this.driverId)
       const obj = {
-        driverId: 1,
+        driverId: this.driverId,
         tripRequestId: item.id,
         price: this.price
       }
